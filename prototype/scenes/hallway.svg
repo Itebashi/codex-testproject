@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540">
+  <defs>
+    <linearGradient id="hallWall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#233242" />
+      <stop offset="1" stop-color="#131d29" />
+    </linearGradient>
+    <linearGradient id="hallFloor" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1f2126" />
+      <stop offset="1" stop-color="#0f1013" />
+    </linearGradient>
+  </defs>
+  <rect width="960" height="360" fill="url(#hallWall)" />
+  <rect y="360" width="960" height="180" fill="url(#hallFloor)" />
+
+  <!-- Door back to study -->
+  <rect x="60" y="160" width="120" height="240" fill="#2f1d16" stroke="#120904" stroke-width="6" />
+  <circle cx="162" cy="300" r="7" fill="#cba95e" />
+
+  <!-- Crate -->
+  <rect x="320" y="320" width="180" height="120" fill="#59442e" rx="8" />
+  <rect x="320" y="300" width="180" height="28" fill="#6b5139" rx="6" />
+  <line x1="320" y1="360" x2="500" y2="360" stroke="#2f251a" stroke-width="6" />
+
+  <!-- Gate to foyer -->
+  <rect x="700" y="150" width="150" height="250" fill="#1a1d24" stroke="#0a0d12" stroke-width="10" />
+  <g stroke="#3b4a64" stroke-width="14" stroke-linecap="round" opacity="0.8">
+    <line x1="720" y1="170" x2="830" y2="170" />
+    <line x1="720" y1="210" x2="830" y2="210" />
+    <line x1="720" y1="250" x2="830" y2="250" />
+    <line x1="720" y1="290" x2="830" y2="290" />
+    <line x1="720" y1="330" x2="830" y2="330" />
+  </g>
+  <circle cx="828" cy="300" r="10" fill="#c0a45a" />
+
+  <!-- Wall lamp -->
+  <ellipse cx="500" cy="200" rx="40" ry="80" fill="#161f2a" stroke="#3b4a64" stroke-width="6" />
+  <radialGradient id="hallLight" cx="0.55" cy="0.15" r="0.5">
+    <stop offset="0" stop-color="rgba(255, 206, 120, 0.6)" />
+    <stop offset="1" stop-color="rgba(255, 206, 120, 0)" />
+  </radialGradient>
+  <circle cx="520" cy="190" r="200" fill="url(#hallLight)" />
+</svg>

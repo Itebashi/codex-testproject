@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540">
+  <defs>
+    <linearGradient id="foyerWall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1e2f2b" />
+      <stop offset="1" stop-color="#15201d" />
+    </linearGradient>
+    <linearGradient id="foyerFloor" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1b1511" />
+      <stop offset="1" stop-color="#0f0a07" />
+    </linearGradient>
+  </defs>
+  <rect width="960" height="360" fill="url(#foyerWall)" />
+  <rect y="360" width="960" height="180" fill="url(#foyerFloor)" />
+
+  <!-- Exit Door -->
+  <rect x="360" y="140" width="240" height="280" fill="#1f1a18" stroke="#0d0a09" stroke-width="12" />
+  <rect x="390" y="170" width="180" height="220" fill="#2c2421" />
+  <rect x="430" y="210" width="100" height="140" fill="#151110" />
+  <rect x="450" y="230" width="60" height="100" fill="#080707" />
+  <circle cx="540" cy="280" r="8" fill="#d4ba6b" />
+
+  <!-- Outdoors glow -->
+  <radialGradient id="night" cx="0.5" cy="0.5" r="0.6">
+    <stop offset="0" stop-color="rgba(122, 173, 205, 0.4)" />
+    <stop offset="1" stop-color="rgba(122, 173, 205, 0)" />
+  </radialGradient>
+  <circle cx="480" cy="240" r="180" fill="url(#night)" />
+
+  <!-- Table -->
+  <rect x="120" y="340" width="160" height="120" fill="#3a2a1f" rx="10" />
+  <rect x="660" y="340" width="160" height="120" fill="#3a2a1f" rx="10" />
+
+  <!-- Plants -->
+  <ellipse cx="140" cy="330" rx="50" ry="80" fill="#244a3a" />
+  <ellipse cx="740" cy="330" rx="50" ry="80" fill="#244a3a" />
+
+  <!-- Light -->
+  <radialGradient id="foyerLight" cx="0.5" cy="0.2" r="0.5">
+    <stop offset="0" stop-color="rgba(255, 220, 180, 0.7)" />
+    <stop offset="1" stop-color="rgba(255, 220, 180, 0)" />
+  </radialGradient>
+  <circle cx="480" cy="120" r="200" fill="url(#foyerLight)" />
+</svg>

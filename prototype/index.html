@@ -1,25 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Escape Room Prototype</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Codex 脱出アドベンチャー</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div id="game">
-  <div id="scene-container">
-    <img id="scene-image" src="room.svg" alt="Room" />
-    <div id="hotspots"></div>
+  <div id="game">
+    <header>
+      <h1>Codex 脱出アドベンチャー</h1>
+      <p class="subtitle">企画書に基づいて組み立てたポイント＆クリック型パズル。</p>
+    </header>
+    <nav id="mobile-nav" aria-label="Interface panels">
+      <button type="button" class="mobile-tab" data-panel-target="actions" aria-controls="actions-panel" aria-pressed="true">
+        行動
+      </button>
+      <button type="button" class="mobile-tab" data-panel-target="inventory" aria-controls="inventory" aria-pressed="false">
+        アイテム
+      </button>
+      <button type="button" class="mobile-tab" data-panel-target="journal" aria-controls="journal" aria-pressed="false">
+        記録
+      </button>
+    </nav>
+    <main class="layout">
+      <aside id="actions-panel">
+        <h2>行動</h2>
+        <div id="verb-buttons" class="button-column"></div>
+        <p class="hint">動詞を選び、対象をクリックしてください。<br />「使う」はアイテムの準備が必要です。</p>
+      </aside>
+      <section id="scene-wrapper">
+        <div id="scene-container">
+          <img id="scene-image" src="" alt="Scene" />
+          <div id="hotspots"></div>
+        </div>
+        <div id="scene-caption"></div>
+      </section>
+      <aside id="sidebar">
+        <section id="inventory">
+          <h2>アイテム</h2>
+          <ul id="inventory-list"></ul>
+          <p class="hint">クリックすると「使う」で指定できます。</p>
+        </section>
+        <section id="journal">
+          <h2>記録</h2>
+          <div id="text-log"></div>
+        </section>
+      </aside>
+    </main>
   </div>
-  <div id="ui">
-    <div id="inventory">
-      <h3>Inventory</h3>
-      <ul id="inventory-list"></ul>
-    </div>
-    <div id="text-box"></div>
-  </div>
-</div>
-<script src="main.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
