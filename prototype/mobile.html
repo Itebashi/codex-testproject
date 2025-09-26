@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>スマホ専用脱出プロトタイプ</title>
+  <style>
+    :root {
+      color-scheme: dark light;
+      --bg: #101014;
+      --fg: #f5f5f5;
+      --accent: #00c6ff;
+      --panel: rgba(23, 24, 32, 0.92);
+      --border: rgba(255, 255, 255, 0.15);
+      --success: #59ffa1;
+      font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top, #1e2538, var(--bg));
+      color: var(--fg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 16px clamp(16px, 6vw, 32px);
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      margin: 0 0 4px;
+      font-weight: 600;
+    }
+
+    header p {
+      margin: 0;
+      font-size: clamp(0.95rem, 3.3vw, 1.1rem);
+      opacity: 0.75;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 0 clamp(12px, 5vw, 40px) 24px;
+    }
+
+    .scene-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+      background: #05070d;
+    }
+
+    .scene {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    #hotspots {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hotspot {
+      position: absolute;
+      border: 2px solid rgba(0, 198, 255, 0.45);
+      border-radius: 12px;
+      backdrop-filter: blur(2px);
+      background: rgba(0, 198, 255, 0.12);
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .hotspot:active {
+      background: rgba(0, 198, 255, 0.35);
+      border-color: rgba(0, 198, 255, 0.9);
+    }
+
+    .ui-panels {
+      display: grid;
+      gap: 12px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: clamp(12px, 3.6vw, 16px);
+      backdrop-filter: blur(8px);
+    }
+
+    #inventory-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      font-size: clamp(1rem, 3.6vw, 1.1rem);
+      font-weight: 600;
+    }
+
+    #inventory-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    #inventory-list li {
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 8px 14px;
+      font-size: clamp(0.9rem, 3.3vw, 1rem);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    #text-box {
+      font-size: clamp(0.95rem, 3.6vw, 1.05rem);
+      line-height: 1.6;
+      min-height: 88px;
+      display: flex;
+      align-items: center;
+    }
+
+    #text-box.success {
+      color: var(--success);
+      font-weight: 600;
+    }
+
+    .cta {
+      margin-top: auto;
+      text-align: center;
+      padding-top: 12px;
+    }
+
+    .cta a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      font-size: 0.95rem;
+      color: var(--fg);
+      text-decoration: none;
+      background: rgba(0, 198, 255, 0.18);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.25);
+    }
+
+    .cta small {
+      display: block;
+      margin-top: 6px;
+      font-size: 0.78rem;
+      opacity: 0.6;
+    }
+
+    @media (min-width: 640px) {
+      main {
+        gap: 24px;
+      }
+
+      .ui-panels {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      #text-box {
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>スマホで遊べる脱出プロトタイプ</h1>
+    <p>タップ操作だけで完結します。アプリのインストールやPCは不要です。</p>
+  </header>
+  <main>
+    <section class="scene-wrapper" aria-label="部屋のイラストとタップエリア">
+      <svg class="scene" viewBox="0 0 640 360" role="img" aria-label="脱出ゲームの部屋">
+        <rect width="640" height="360" fill="#d0d0d0"></rect>
+        <rect x="520" y="120" width="80" height="180" fill="#663300" stroke="#000"></rect>
+        <rect x="250" y="220" width="100" height="60" fill="#999" stroke="#000"></rect>
+      </svg>
+      <div id="hotspots" aria-hidden="true"></div>
+    </section>
+
+    <section class="ui-panels" aria-live="polite">
+      <article class="panel" aria-labelledby="inventory-title">
+        <div id="inventory-title">持ち物 <span id="inventory-count"></span></div>
+        <ul id="inventory-list"></ul>
+      </article>
+      <article class="panel" id="text-box"></article>
+    </section>
+
+    <div class="cta">
+      <a id="reset-button" href="#">最初からやり直す</a>
+      <small>ページをホーム画面に追加すると全画面表示で遊べます。</small>
+    </div>
+  </main>
+
+  <script>
+    const BASE_WIDTH = 640;
+    const BASE_HEIGHT = 360;
+
+    const hotspotsLayer = document.getElementById('hotspots');
+    const textBox = document.getElementById('text-box');
+    const inventoryList = document.getElementById('inventory-list');
+    const inventoryCount = document.getElementById('inventory-count');
+    const resetButton = document.getElementById('reset-button');
+
+    const game = {
+      inventory: [],
+      hotspots: [
+        {
+          id: 'box',
+          x: 250,
+          y: 220,
+          width: 100,
+          height: 60,
+          onTap: () => {
+            if (!game.inventory.includes('小さな鍵')) {
+              game.inventory.push('小さな鍵');
+              renderInventory();
+              showMessage('箱の中から小さな鍵を手に入れた。');
+            } else {
+              showMessage('箱の中は空っぽだ。');
+            }
+          }
+        },
+        {
+          id: 'door',
+          x: 520,
+          y: 120,
+          width: 80,
+          height: 180,
+          onTap: () => {
+            if (game.inventory.includes('小さな鍵')) {
+              showMessage('鍵を使ってドアを開けた！脱出成功！', true);
+              clearHotspots();
+            } else {
+              showMessage('鍵がかかっている。どこかで鍵を見つけよう。');
+            }
+          }
+        }
+      ]
+    };
+
+    function clearHotspots() {
+      hotspotsLayer.replaceChildren();
+    }
+
+    function showMessage(message, isSuccess = false) {
+      textBox.textContent = message;
+      textBox.classList.toggle('success', isSuccess);
+    }
+
+    function renderInventory() {
+      inventoryList.replaceChildren();
+      game.inventory.forEach((item) => {
+        const pill = document.createElement('li');
+        pill.textContent = item;
+        inventoryList.appendChild(pill);
+      });
+      inventoryCount.textContent = `${game.inventory.length}個`;
+    }
+
+    function createHotspot(hotspot) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'hotspot';
+      button.setAttribute('aria-label', `${hotspot.id}を調べる`);
+      button.style.left = `${(hotspot.x / BASE_WIDTH) * 100}%`;
+      button.style.top = `${(hotspot.y / BASE_HEIGHT) * 100}%`;
+      button.style.width = `${(hotspot.width / BASE_WIDTH) * 100}%`;
+      button.style.height = `${(hotspot.height / BASE_HEIGHT) * 100}%`;
+      button.addEventListener('click', hotspot.onTap);
+      button.addEventListener('touchstart', (event) => {
+        event.preventDefault();
+        hotspot.onTap();
+      }, { passive: false });
+      return button;
+    }
+
+    function renderHotspots() {
+      clearHotspots();
+      const fragment = document.createDocumentFragment();
+      game.hotspots.forEach((hotspot) => {
+        fragment.appendChild(createHotspot(hotspot));
+      });
+      hotspotsLayer.appendChild(fragment);
+    }
+
+    function resetGame() {
+      game.inventory = [];
+      renderInventory();
+      renderHotspots();
+      showMessage('鍵のかかった部屋にいる。怪しい場所をタップして脱出しよう。');
+    }
+
+    resetButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      resetGame();
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      resetGame();
+    });
+  </script>
+</body>
+</html>
