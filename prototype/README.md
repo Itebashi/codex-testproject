@@ -1,13 +1,26 @@
-# Escape Room Prototype
+# Codex 脱出アドベンチャー プロトタイプ
 
-This directory contains a very simple web-based prototype for a 2D adventure/escape game. Open `index.html` in a web browser to play.
+このディレクトリには、**gamedevelopplan** を指針として構築したレトロ風ポイント＆クリック脱出ゲームのブラウザ用プロトタイプが含まれています。
 
-## How it Works
-- The room is represented by a static image (`room.svg`).
-The image is a simple inline SVG so that no binary assets are needed.
+## プレイ方法
+1. プロジェクト直下で `python -m http.server --bind 0.0.0.0 8000` を実行し、静的ホストを立ち上げます。
+2. 同じネットワーク上の PC またはスマートフォンから `http://<あなたのIP>:8000/index.html` にアクセスします。
+3. **行動** パネルで動詞を選び、シーン内で強調表示されたホットスポットをクリック／タップします。
+4. **アイテム** パネルで使用したいアイテムを準備してから **使う** を選びます。
+5. **記録** に表示されるログテキストで物語の反応やヒントを確認します。
 
-- Clickable hotspots are positioned over the image using absolute positioning.
-- Clicking the box gives you a key that appears in the inventory list.
-- Clicking the door checks the inventory. If you have the key, you escape and the game ends.
+> **ヒント:** スマートフォンではタイトル下のタブバーから 行動／アイテム／記録 パネルを切り替えられるため、狭い画面でも快適に操作できます。
 
-No external dependencies are required; everything runs in the browser with plain HTML, CSS, and JavaScript.
+## シナリオ概要
+- **書斎:** 机と肖像画を調べて脱出に役立つ道具を見つけましょう。
+- **廊下:** 木箱をこじ開け、鉄格子の錠を解きます。
+- **玄関ホール:** 玄関を抜ければ脱出成功です。
+
+プロトタイプには 3 枚の SVG 背景（`scenes/study.svg`、`scenes/hallway.svg`、`scenes/foyer.svg`）が含まれています。独自アートへ差し替える場合はファイルを入れ替えるか、`main.js` 内のパスを書き換えてください。音声素材は同梱されていませんが、ログ出力部分に効果音再生処理を追加できる構造になっています。
+
+## 実装メモ
+- セマンティックな HTML とレスポンシブな CSS、素の JavaScript で構成されています。
+- 動詞／アイテム／シーン／ホットスポット／フラグといったゲームデータは素早く編集できるよう `main.js` にまとめています。
+- アイテムと動詞の選択は Enter／Space キーでも操作可能です。
+
+ビルドツールや外部ライブラリは不要です。
