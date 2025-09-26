@@ -1,25 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Escape Room Prototype</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="0; url=mobile.html">
+  <title>スマホ専用脱出プロトタイプ</title>
+  <style>
+    body {
+      font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+      background: #090c14;
+      color: #f5f6fb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      text-align: center;
+      padding: 24px;
+    }
+
+    a {
+      color: #8ad8ff;
+    }
+  </style>
 </head>
 <body>
-<div id="game">
-  <div id="scene-container">
-    <img id="scene-image" src="room.svg" alt="Room" />
-    <div id="hotspots"></div>
-  </div>
-  <div id="ui">
-    <div id="inventory">
-      <h3>Inventory</h3>
-      <ul id="inventory-list"></ul>
-    </div>
-    <div id="text-box"></div>
-  </div>
-</div>
-<script src="main.js"></script>
+  <p>数秒待っても移動しない場合は <a href="mobile.html">こちらをタップ</a> してください。</p>
 </body>
 </html>
