@@ -4,6 +4,7 @@ This repository contains planning documents for a retro-style point-and-click ad
 
 ## Contents
 - `GAME_ENGINE_REPORT.md` – Initial design notes and background on classic adventure game mechanics.
+- `GAME_COMPLIANCE_REPORT.md` – Safety, privacy, and accessibility checklist that the prototype must follow.
 - `screen_layouts/` – Directory for storing screenshot references of adventure game screen layouts. See `screen_layouts/README.md` for details.
 
 Please note that due to environment limitations, this project does not include actual screenshots. Gather them manually and place them in the `screen_layouts` folder.
