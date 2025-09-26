@@ -7,19 +7,56 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="compliance-overlay" role="dialog" aria-modal="true" aria-labelledby="compliance-title">
+  <div class="overlay-content">
+    <h1 id="compliance-title">Play Safely Checklist</h1>
+    <p>
+      Please review the safety guidance before playing. Take regular breaks, stop if you feel unwell, and
+      avoid play if you experience photosensitive reactions.
+    </p>
+    <ul>
+      <li>This prototype is recommended for players aged 13 and up or for younger players with guardian supervision.</li>
+      <li>No personal information is collected. Gameplay progress is stored only for this session.</li>
+      <li>You can open the safety panel at any time from within the game interface.</li>
+    </ul>
+    <form>
+      <label><input type="checkbox" id="age-confirm"> I am at least 13 years old or have guardian permission.</label>
+      <label><input type="checkbox" id="privacy-confirm"> I understand that this demo does not collect personal data.</label>
+      <div class="overlay-actions">
+        <button type="button" id="start-game" disabled>Start Game</button>
+        <button type="button" id="view-report">View Compliance Report</button>
+      </div>
+    </form>
+  </div>
+</div>
 <div id="game">
   <div id="scene-container">
     <img id="scene-image" src="room.svg" alt="Room" />
     <div id="hotspots"></div>
   </div>
   <div id="ui">
+    <div id="control-bar">
+      <button type="button" id="help-button">Help &amp; Safety</button>
+      <button type="button" id="accessibility-button">Accessibility Options</button>
+      <button type="button" id="reset-button">Restart Session</button>
+      <button type="button" id="support-button">Support</button>
+    </div>
     <div id="inventory">
       <h3>Inventory</h3>
       <ul id="inventory-list"></ul>
     </div>
-    <div id="text-box"></div>
+    <div id="text-box" role="status" aria-live="polite"></div>
   </div>
 </div>
+<dialog id="panel-dialog">
+  <article>
+    <header>
+      <h2 id="panel-title">Safety Information</h2>
+      <button type="button" id="close-panel" aria-label="Close">×</button>
+    </header>
+    <div id="panel-content"></div>
+  </article>
+</dialog>
 <script src="main.js"></script>
 </body>
 </html>
